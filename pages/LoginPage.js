@@ -25,7 +25,4 @@ export class LoginPage {
        await this.loginbutton.click();
     }
 
-   
-
-
 }
