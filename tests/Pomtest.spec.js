@@ -1,21 +1,22 @@
 import { test } from '@playwright/test';
+
 import { LoginPage } from '../pages/LoginPage.js';
-import { MenuPage } from '../pages/MenuPage.js';  
+import { FindCafePage } from '../pages/FindCafePage.js';
 
+import { users } from '../testData/users.js';
+import cafes from '../testData/cafes.js';
 
-//Login
-test('login', async ({ page }) => {
+test('Login and Select Cafe', async ({ page }) => {
 
     const login = new LoginPage(page);
+    const findCafe = new FindCafePage(page);
 
-    await login.gotoHomePage();
-    await login.clickAccount();
-    await login.logindata("lkeshav037@gmail.com","Keshav@0");
-    
-    //Add to cart
-    const menu = new MenuPage(page);
-    await menu.selectCafe("8719 Avenue D, Brooklyn, NY 11236, USA");
-    
+    await login.login(
+        users.validUser.username,
+        users.validUser.password
+    );
+
+    await findCafe.selectCafe(
+        cafes.lab2
+    );
 });
-
-
